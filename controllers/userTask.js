@@ -2,6 +2,7 @@ const {
   updateTasks,
   createTasks,
   deleteTasks,
+  getUserTasks,
 } = require('../services/usertask-services');
 
 exports.AddNewTask = async (req, res) => {
@@ -48,6 +49,22 @@ exports.DeleteTask = async (req, res) => {
     return res.status(400).json({
       success: false,
       message: 'unable to delete task',
+    });
+  }
+};
+
+exports.GetUserTasks = async (req, res) => {
+  try {
+    const result = await getUserTasks(req.params.id);
+    return res.status(200).json({
+      success: true,
+      message: 'tasks fetched successfully',
+      result,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: 'unable to fetch tasks',
     });
   }
 };

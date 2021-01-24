@@ -13,6 +13,9 @@ exports.deleteTasks = (id) => {
 };
 
 exports.deleteUserTasks = (user_id) => {
-  console.log('user_id>>', user_id);
   return models.UserTasks.deleteMany({ user_id });
+};
+
+exports.getUserTasks = (user_id) => {
+  return models.UserTasks.find();
 };
